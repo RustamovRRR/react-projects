@@ -5,6 +5,20 @@ import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 const Review = () => {
   const [index, setIndex] = useState(0);
   const { name, job, image, text } = people[index];
+  const prevPerson = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    } else {
+      setIndex(people.length - 1);
+    }
+  };
+  const nextPerson = () => {
+    if (index < people.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
+  };
   return (
     <article className="review">
       <div className="img-container">
@@ -17,10 +31,10 @@ const Review = () => {
       <p className="job">{job}</p>
       <p className="info">{text}</p>
       <div className="button-container">
-        <button className="prev-btn">
+        <button className="prev-btn" onClick={prevPerson}>
           <FaChevronLeft />
         </button>
-        <button className="next-btn">
+        <button className="next-btn" onClick={nextPerson}>
           <FaChevronRight />
         </button>
       </div>
